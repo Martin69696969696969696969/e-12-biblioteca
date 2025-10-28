@@ -1,17 +1,46 @@
-# 📚 Sistema de Biblioteca — Proyecto Refactorizado (Buenas Prácticas y Seguridad)
+# 📚 Sistema de Biblioteca — Proyecto Refactorizado
 
-🚀 Proyecto desarrollado aplicando principios SOLID, seguridad en base de datos y cifrado de contraseñas con bcrypt.
-Conexión a base de datos MySQL mediante consultas totalmente parametrizadas.
+Proyecto de un sistema de gestión de biblioteca en Python, refactorizado aplicando buenas prácticas (principios SOLID), seguridad en base de datos y cifrado de contraseñas con bcrypt. Conexión a MySQL mediante consultas parametrizadas.
 
-✅ Mejoras implementadas respecto al código original
-Característica	Antes	Ahora
-Estructura del proyecto	Todo en un solo archivo	Arquitectura modular
-Principios SOLID	❌	✅ Aplicados
-Seguridad SQL	Consultas vulnerables	Consultas parametrizadas
-Manejo de contraseñas	Guardadas en texto plano ❌	Encriptación con bcrypt ✅
-Logging	Parcial	Logging completo con gestión de errores
-Mantenibilidad	Baja	Alta y escalable
-📂 Estructura del proyecto
+## 📌 Contenido de este README
+
+Descripción
+
+Estructura del proyecto
+
+Tabla de características
+
+Requisitos e instalación
+
+Configuración de base de datos (SQL)
+
+Ejecución del sistema
+
+Seguridad aplicada
+
+Trabajo extra (inyección SQL)
+
+Autor
+
+## 📝 Descripción
+
+Este proyecto es una mejora del sistema de biblioteca original del Ejercicio 11.
+Se reestructura el código para hacerlo más seguro, modular y mantenible.
+
+Aplicaciones principales del refactor:
+
+✅ Principios SOLID
+
+✅ Contraseñas cifradas con bcrypt
+
+✅ Consultas SQL seguras
+
+✅ Registro de logs
+
+✅ Arquitectura escalable
+
+## 📂 Estructura del proyecto
+``` bash
 biblioteca/
 │
 ├── conexion.py
@@ -21,43 +50,66 @@ biblioteca/
     ├── libro.py
     ├── usuario.py
     └── prestamo.py
+```
+
+✅ Mejor organización del código
+
+✅ Separación de responsabilidades (SRP)
+
+## 🔍 Tabla de características
+###Antes
+Característica
+Estructura del proyecto	❌ Un solo archivo	
+
+Principios SOLID	❌	
+
+Contraseñas seguras	❌ Texto plano	
+
+Seguridad SQL	❌ Vulnerable	
+
+Mantenibilidad	❌	Baja	
+
+Logging	Parcial	❌	
+
+Validaciones	❌	Básicas	
+
+### Ahora
+Estructura del proyecto ✅ Módulos separados
+
+Principios SOLID ✅ Sí
+
+Contraseñas seguras ✅ Hash bcrypt
+
+Seguridad SQL ✅ Parametrizada
+
+Mantenibilidad Alta ✅
+
+Logging	Parcial ✅ Completo
+
+Validaciones ✅ Robustas
+## 🛠 Requisitos e instalación
+
+Requisitos:
+
+Python 3.8+
+
+MySQL Server + Workbench opcional
+
+Instalación de dependencias:
+
+pip install bcrypt mysql-connector-python
 
 
-✅ Separación de responsabilidades
-✅ Código mantenible y escalable
-✅ Fácil de extender (Autores, Categorías, Multas, etc.)
+Sugerencia: usar entorno virtual
 
-🛠️ Tecnologías utilizadas
+python -m venv venv
+.\venv\Scripts\Activate.ps1    # Windows PowerShell
+pip install bcrypt mysql-connector-python
 
-✅ Python 3.10+
+## 🗄️ Configuración de base de datos
 
-✅ MySQL Server / MySQL Workbench
-
-✅ Bcrypt para encriptación
-
-✅ PEP8 & logging
-
-🔐 Seguridad aplicada
-
-Hashing de contraseñas con bcrypt
-
-Validaciones de entrada
-
-Consultas SQL seguras → Prevención de Inyección SQL
-
-Manejo de errores sin exponer información sensible del servidor
-
-📌 Requerimientos
-
-Instalar dependencias:
-
-pip install bcrypt
-pip install mysql-connector-python
-
-🔧 Configuración de la Base de Datos
-
-En MySQL crear la base y tablas con:
-
+Ejecuta en MySQL Workbench o consola:
+``` bash
 CREATE DATABASE biblioteca;
 USE biblioteca;
 
@@ -85,44 +137,51 @@ CREATE TABLE prestamos (
     FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
     FOREIGN KEY (id_libro) REFERENCES libros(id)
 );
+```
+## ▶️ Ejecución
 
-▶️ Ejecución del programa
-
-Desde la terminal:
+Ejecuta desde consola:
 
 python main.py
 
 
-Menú principal:
+Menú inicial:
 
 1. Usuarios
 2. Libros
 3. Salir
 
 
-✅ Alta de usuarios con contraseña segura
-✅ Alta de libros
-✅ Listo para agregar más funciones (préstamos, devoluciones, login)
+✅ Registrar usuarios con contraseña segura
 
-📸 Capturas de ejemplo
+✅ Registrar libros en la base de datos
 
-(Coloca aquí tus capturas de ejecución en consola desde GitHub)
+## 🔒 Seguridad aplicada
 
-🌟 Trabajo Extra (opcional)
+✅ Cifrado bcrypt → No se guardan contraseñas en claro
 
-✅ Implementar deliberadamente una inyección SQL y demostrar el ataque
-✅ Documentar el proceso
-✅ Presentar evidencia en clase
-➡️ Listo para implementarse si se solicita
+✅ Prevención de inyección SQL con consultas parametrizadas
 
-👨‍💻 Autor
+✅ Manejo de errores sin filtrar información
 
-Nombre del estudiante: Tu nombre aquí
+✅ Recomendado principio de mínimo privilegio en usuario MySQL
 
-Materia: Seguridad Informática / Fundamentos de Programación
+## ➕ Trabajo Extra (Opcional)
 
-Universidad: CGUTyP
+Se puede incluir:
 
-✅ Estado del proyecto: Finalizado con mejoras
+📌 Implementar una vulnerabilidad SQL en una rama separada
 
-📌 Puedes ampliar el sistema con autenticación, roles avanzados, gestión de multas, reportes y más.
+📌 Mostrar un ataque de inyección SQL exitoso
+
+📌 Documentar el ataque para presentación en clase
+
+(Disponible si tu docente solicita punto extra)
+
+## 👤 Autor
+
+Nombre: Martin
+Materia: Seguridad Informática / Bases de Datos
+Docente: profe Jorge
+Institución: utc
+Fecha: 28/10/2025
