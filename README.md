@@ -181,7 +181,11 @@ Se puede incluir:
 ## 👤 Autor
 
 Nombre: Martin
+
 Materia: Seguridad Informática / Bases de Datos
+
 Docente: profe Jorge
+
 Institución: utc
+
 Fecha: 28/10/2025
